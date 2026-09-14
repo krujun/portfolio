@@ -68,6 +68,7 @@ export default function ProfileModal({ isOpen, onClose, onSave, profile }) {
               src={formData.avatar_url || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80'}
               alt="Avatar Preview"
               className="w-24 h-24 rounded-full object-cover ring-4 ring-sky-500/30 shadow-lg"
+              referrerPolicy="no-referrer"
               onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80' }}
             />
             <span className="absolute bottom-0 right-0 p-1.5 bg-sky-500 text-white rounded-full shadow-md" title="ตัวอย่างรูปภาพ">

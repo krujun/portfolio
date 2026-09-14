@@ -28,6 +28,7 @@ export default function Home({ profile, projects, articles, isAdmin, onNavigate,
               src={currentProfile.avatar_url}
               alt={currentProfile.name}
               className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover ring-4 ring-sky-500/30 shadow-2xl shadow-sky-500/20 mx-auto transition-transform duration-300 group-hover:scale-105"
+              referrerPolicy="no-referrer"
               onError={(e) => { e.target.src = defaultProfile.avatar_url }}
             />
             <span className="absolute bottom-1 right-1 w-5 h-5 bg-emerald-500 border-2 border-slate-950 rounded-full" title="Available for projects" />
@@ -46,28 +47,28 @@ export default function Home({ profile, projects, articles, isAdmin, onNavigate,
           </div>
 
           {/* Heading Name */}
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-100 tracking-tight mb-3">
-            สวัสดีครับ ผม <span className="bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">{currentProfile.name}</span> 👋
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-100 tracking-tight mb-3 leading-snug sm:leading-tight">
+            สวัสดีครับ ผม <span className="inline-block bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">{currentProfile.name}</span> 👋
           </h1>
-          <p className="text-sky-400 font-semibold text-lg sm:text-xl mb-4">
+          <p className="text-sky-400 font-semibold text-base sm:text-lg md:text-xl mb-4">
             {currentProfile.role}
           </p>
-          <p className="max-w-2xl mx-auto text-slate-400 text-sm sm:text-base leading-relaxed mb-8">
+          <p className="max-w-2xl mx-auto text-slate-400 text-xs sm:text-sm md:text-base leading-relaxed mb-8 px-2">
             {currentProfile.bio}
           </p>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 max-w-md sm:max-w-none mx-auto px-4 sm:px-0">
             <button
               onClick={() => onNavigate('projects')}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-sky-500/25 transition-all transform hover:-translate-y-0.5 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-sky-500/25 transition-all transform hover:-translate-y-0.5 cursor-pointer min-h-[44px]"
             >
               <span>สำรวจผลงานทั้งหมด</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => onNavigate('articles')}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white font-semibold text-sm border border-slate-800 transition-all cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white font-semibold text-sm border border-slate-800 transition-all cursor-pointer min-h-[44px]"
             >
               <span>อ่านบทความ</span>
             </button>
@@ -75,7 +76,7 @@ export default function Home({ profile, projects, articles, isAdmin, onNavigate,
             {isAdmin && (
               <button
                 onClick={onOpenEditProfile}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-semibold text-sm border border-amber-500/30 transition-all cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-semibold text-sm border border-amber-500/30 transition-all cursor-pointer min-h-[44px]"
               >
                 <Edit3 className="w-4 h-4" />
                 <span>แก้ไขข้อมูลโปรไฟล์</span>

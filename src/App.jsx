@@ -104,9 +104,11 @@ export default function App() {
 
     try {
       // Fetch Profile
-      const { data: profData } = await supabase.from('profile').select('*').limit(1).single()
-      if (profData) {
-        setProfile(profData)
+      const { data: profData, error: profErr } = await supabase.from('profile').select('*').limit(1)
+      if (profErr) {
+        console.warn('Error fetching profile:', profErr.message)
+      } else if (profData && profData.length > 0) {
+        setProfile(profData[0])
       }
 
       // Fetch Projects
@@ -159,14 +161,28 @@ export default function App() {
       return
     }
 
-    if (profile && profile.id && profile.id !== 'demo-profile') {
-      const { error } = await supabase.from('profile').update(formData).eq('id', profile.id)
+    // Check if a profile record exists in DB
+    const { data: existingProf } = await supabase.from('profile').select('id').limit(1)
+    
+    if (existingProf && existingProf.length > 0) {
+      const { error } = await supabase.from('profile').update({
+        name: formData.name,
+        role: formData.role,
+        bio: formData.bio,
+        avatar_url: formData.avatar_url,
+        updated_at: new Date().toISOString()
+      }).eq('id', existingProf[0].id)
       if (error) throw error
     } else {
-      const { error } = await supabase.from('profile').insert([formData])
+      const { error } = await supabase.from('profile').insert([{
+        name: formData.name,
+        role: formData.role,
+        bio: formData.bio,
+        avatar_url: formData.avatar_url
+      }])
       if (error) throw error
     }
-    fetchData()
+    await fetchData()
   }
 
   // Projects CRUD

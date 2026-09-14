@@ -13,6 +13,7 @@ export default function ProjectCard({ project, isAdmin, onEdit, onDelete }) {
           src={project.image_url || defaultImage}
           alt={project.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          referrerPolicy="no-referrer"
           onError={(e) => { e.target.src = defaultImage }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80" />
